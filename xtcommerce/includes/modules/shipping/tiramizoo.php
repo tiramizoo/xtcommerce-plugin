@@ -48,15 +48,15 @@ class tiramizoo {
 				
 		$this->quotes = array(
 			"id" => $this->code,
-         "module" => $this->title,
+			"module" => $this->title,
 			"methods" => array()
 		);
 
-      if ($this->tax_class > 0) {
-        $this->quotes['tax'] = xtc_get_tax_rate($this->tax_class, $order->delivery['country']['id'], $order->delivery['zone_id']);
-      }
+		if ($this->tax_class > 0) {
+			$this->quotes['tax'] = xtc_get_tax_rate($this->tax_class, $order->delivery['country']['id'], $order->delivery['zone_id']);
+		}
 
-      if (xtc_not_null($this->icon)) $this->quotes['icon'] = xtc_image($this->icon, $this->title);
+		if (xtc_not_null($this->icon)) $this->quotes['icon'] = xtc_image($this->icon, $this->title);
 
 		$windows = $this->_find_time();
 		
@@ -480,29 +480,29 @@ class tiramizoo {
 	}
 	
 	function _is_utf8($str) {
-	    $c=0; $b=0;
-	    $bits=0;
-	    $len=strlen($str);
-	    for($i=0; $i<$len; $i++){
-	        $c=ord($str[$i]);
-	        if($c > 128){
-	            if(($c >= 254)) return false;
-	            elseif($c >= 252) $bits=6;
-	            elseif($c >= 248) $bits=5;
-	            elseif($c >= 240) $bits=4;
-	            elseif($c >= 224) $bits=3;
-	            elseif($c >= 192) $bits=2;
-	            else return false;
-	            if(($i+$bits) > $len) return false;
-	            while($bits > 1){
-	                $i++;
-	                $b=ord($str[$i]);
-	                if($b < 128 || $b > 191) return false;
-	                $bits--;
-	            }
-	        }
-	    }
-	    return true;
+		$c=0; $b=0;
+		$bits=0;
+		$len=strlen($str);
+		for($i=0; $i<$len; $i++){
+			$c=ord($str[$i]);
+			if($c > 128) {
+				if(($c >= 254)) return false;
+				elseif($c >= 252) $bits=6;
+				elseif($c >= 248) $bits=5;
+				elseif($c >= 240) $bits=4;
+				elseif($c >= 224) $bits=3;
+				elseif($c >= 192) $bits=2;
+				else return false;
+				if(($i+$bits) > $len) return false;
+				while($bits > 1){
+					$i++;
+					$b=ord($str[$i]);
+					if($b < 128 || $b > 191) return false;
+					$bits--;
+				}
+			}
+		}
+		return true;
 	}
 
 }
@@ -547,11 +547,11 @@ if (!class_exists("tiramizoo_api")) {
 	
 		}	
 	
-   	private function json_unescape($m) {
+		private function json_unescape($m) {
 	
-	      return json_decode('"'.$m[1].'"');
+			return json_decode('"'.$m[1].'"');
 	
-      }
+		}
       
 	}
 	
@@ -573,10 +573,10 @@ if (!class_exists("payment_proxy")) {
 		function payment_proxy() {
 		
 			$this->code = $GLOBALS["payment_backup"]->code;
-		   $this->title = $GLOBALS["payment_backup"]->title;
-		   $this->description = $GLOBALS["payment_backup"]->description;
-		   $this->sort_order = $GLOBALS["payment_backup"]->sort_order;
-		   $this->enabled = $GLOBALS["payment_backup"]->enabled;
+			$this->title = $GLOBALS["payment_backup"]->title;
+			$this->description = $GLOBALS["payment_backup"]->description;
+			$this->sort_order = $GLOBALS["payment_backup"]->sort_order;
+			$this->enabled = $GLOBALS["payment_backup"]->enabled;
 			$this->order_status = $GLOBALS["payment_backup"]->order_status;
 
 		}
@@ -584,32 +584,32 @@ if (!class_exists("payment_proxy")) {
 		function update_status() { 
 		
 			$GLOBALS["payment_backup"]->update_status(); 
-		   $this->enabled = $GLOBALS["payment_backup"]->enabled;
+			$this->enabled = $GLOBALS["payment_backup"]->enabled;
 		
 		}
    
-	   function javascript_validation() {
+		function javascript_validation() {
 			return $GLOBALS["payment_backup"]->javascript_validation(); 
-	   }
+		}
    
-	   function selection() {
+		function selection() {
 			return $GLOBALS["payment_backup"]->selection(); 	
 		}
 
 		function pre_confirmation_check() {
-	 		return $GLOBALS["payment_backup"]->pre_confirmation_check(); 	
+			return $GLOBALS["payment_backup"]->pre_confirmation_check(); 	
 		}
 	
 		function confirmation() {
-	 		return $GLOBALS["payment_backup"]->confirmation(); 	
+			return $GLOBALS["payment_backup"]->confirmation(); 	
 		}
 
 		function process_button() {
-	 		return $GLOBALS["payment_backup"]->process_button(); 	
+			return $GLOBALS["payment_backup"]->process_button(); 	
 		}
 
 		function before_process() {
-	 		return $GLOBALS["payment_backup"]->before_process(); 	
+			return $GLOBALS["payment_backup"]->before_process(); 	
 		}
 
 		function after_process() {
@@ -619,28 +619,28 @@ if (!class_exists("payment_proxy")) {
 				$GLOBALS["tiramizoo"]->submit();
 			}
 
-	 		return $GLOBALS["payment_backup"]->after_process(); 
+			return $GLOBALS["payment_backup"]->after_process(); 
 	
 		}
 
 		function get_error() {
-	 		return $GLOBALS["payment_backup"]->get_error(); 	
+			return $GLOBALS["payment_backup"]->get_error(); 	
 		}
 	
 		function check() {
-	 		return $GLOBALS["payment_backup"]->check(); 	
+			return $GLOBALS["payment_backup"]->check(); 	
 		}
 	
 		function install() {
-	 		$GLOBALS["payment_backup"]->install(); 	
+			$GLOBALS["payment_backup"]->install(); 	
 		}
 	
 		function remove() {
-	 		$GLOBALS["payment_backup"]->remove(); 	
+			$GLOBALS["payment_backup"]->remove(); 	
 		}
 	
 		function keys() {
-	 		return $GLOBALS["payment_backup"]->keys(); 	
+			return $GLOBALS["payment_backup"]->keys(); 	
 		}
 	
 	}
