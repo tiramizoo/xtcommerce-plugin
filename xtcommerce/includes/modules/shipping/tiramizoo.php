@@ -239,6 +239,10 @@ class tiramizoo {
 			
 		}
 		
+		/* purge old cache data */
+		
+		xtc_db_query("DELETE FROM tiramizoo_cache WHERE `expiry` <= '".time()."'");
+		
 		return true;
 
 	}
