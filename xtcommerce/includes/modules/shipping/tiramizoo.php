@@ -144,8 +144,9 @@ class tiramizoo {
 			}
 			
 		}
-		
-		$_SESSION["tiramizoo_quotes"] = $quotes;
+				
+		xtc_db_query("INSERT INTO tiramizoo_cache SET `expiry` = '".(time()+86400)."', `value` = '".tep_db_input(json_encode($quotes))."'");
+		$_SESSION["tiramizoo_quotes_cache"] = xtc_db_insert_id();
 		
 		global $xtPrice;
 				
@@ -187,9 +188,17 @@ class tiramizoo {
 			$description = mb_substr($description,0,509)+"...";
 			
 		}
+		
+		$result = xtc_db_query("SELECT `value` FROM tiramizoo_cache WHERE `id` = '".$_SESSION["tiramizoo_quotes_cache"]."'");
+		
+		if (xtc_db_num_rows() <> 1) { return false; }
+		
+		$quotes = xtc_db_fetch_array($result);
+		
+		$quotes = json_decode($quotes["value"], true);		
 				
 		$data = array(
-			"quote" => $_SESSION["tiramizoo_quotes"][$quote_id],
+			"quote" => $quotes[$quote_id],
 			"pickup" => array(
 				"name" => $this->_fix_string(MODULE_SHIPPING_TIRAMIZOO_PICKUP_NAME),
 				"phone_number" => $this->_fix_string(MODULE_SHIPPING_TIRAMIZOO_PICKUP_PHONE),
@@ -291,6 +300,9 @@ class tiramizoo {
 		xtc_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_key, configuration_value, configuration_group_id, sort_order, date_added) values ('MODULE_SHIPPING_TIRAMIZOO_SIZE_FACTOR', '1.0', '6', '13', now())");      
 		xtc_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_key, configuration_value, configuration_group_id, sort_order, date_added) values ('MODULE_SHIPPING_TIRAMIZOO_MIN_AMOUNT', '50.0', '6', '13', now())");      
 
+		xtc_db_query("DROP TABLE IF EXISTS `tiramizoo_cache`");
+		xtc_db_query("CREATE TABLE `tiramizoo_cache` (`id` int(8) NOT NULL AUTO_INCREMENT, `expiry` int(10) NOT NULL, `value` longtext NOT NULL, PRIMARY KEY (`id`), KEY `expiry` (`expiry`)) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8");
+
 		return true;
 
 	}
@@ -298,6 +310,7 @@ class tiramizoo {
 	function remove() {
 
 		xtc_db_query("delete from " . TABLE_CONFIGURATION . " where configuration_key in ('" . implode("', '", $this->keys()) . "')");
+		tep_db_query("DROP TABLE IF EXISTS `tiramizoo_cache`");
 
 	}
 
