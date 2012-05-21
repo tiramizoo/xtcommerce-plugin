@@ -517,7 +517,7 @@ if (!class_exists("tiramizoo_api")) {
 
 	class tiramizoo_api {
 	
-		private $api_url = 'https://api-staging.tiramizoo.com/v1';
+		private $api_url = 'https://api.tiramizoo.com/v1';
 	
 		public function tiramizoo_api($api_userid, $api_key) {}
 		
