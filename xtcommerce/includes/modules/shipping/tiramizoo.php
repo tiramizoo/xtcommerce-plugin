@@ -64,16 +64,22 @@ class tiramizoo {
 			
 			return false;
 			
-		}
+		}		
 		
 		$data = array(
 			"pickup" => array(
-				"address" => $this->_fix_string(MODULE_SHIPPING_TIRAMIZOO_PICKUP_STREET." ".MODULE_SHIPPING_TIRAMIZOO_PICKUP_NUMBER.", ".MODULE_SHIPPING_TIRAMIZOO_PICKUP_POSTCODE." ".MODULE_SHIPPING_TIRAMIZOO_PICKUP_CITY),
+				"address_line_1" => $this->_fix_string(MODULE_SHIPPING_TIRAMIZOO_PICKUP_STREET." ".MODULE_SHIPPING_TIRAMIZOO_PICKUP_NUMBER),
+				"postal_code" => $this->_fix_string(MODULE_SHIPPING_TIRAMIZOO_PICKUP_POSTCODE),
+				"city" => $this->_fix_string(MODULE_SHIPPING_TIRAMIZOO_PICKUP_CITY),
+				"country_code" => $this->_fix_string(MODULE_SHIPPING_TIRAMIZOO_PICKUP_COUNTRY),
 				"delay" => (MODULE_SHIPPING_TIRAMIZOO_PICKUP_DELAY+0),
 				"windows" => $windows
 			),
 			"delivery" => array(
-				"address" => $this->_fix_string($order->delivery["street_address"].", ".$order->delivery["postcode"]." ".$order->delivery["city"]),
+				"address_line_1" => $this->_fix_string($order->delivery["street_address"]),
+				"postal_code" => $this->_fix_string($order->delivery["postcode"]),
+				"city" => $this->_fix_string($order->delivery["city"]),
+				"country_code" => $this->_fix_string($order->delivery["city"]["iso_code_2"]),
 				"intervals" => true
 			),
 			"items" => array()
