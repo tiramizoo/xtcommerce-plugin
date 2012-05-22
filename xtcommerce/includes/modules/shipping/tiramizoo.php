@@ -79,7 +79,7 @@ class tiramizoo {
 				"address_line_1" => $this->_fix_string($order->delivery["street_address"]),
 				"postal_code" => $this->_fix_string($order->delivery["postcode"]),
 				"city" => $this->_fix_string($order->delivery["city"]),
-				"country_code" => $this->_fix_string($order->delivery["city"]["iso_code_2"]),
+				"country_code" => $this->_fix_string(strtolower($order->delivery["country"]["iso_code_2"])),
 				"intervals" => true
 			),
 			"items" => array()
@@ -145,7 +145,7 @@ class tiramizoo {
 			
 		}
 				
-		xtc_db_query("INSERT INTO tiramizoo_cache SET `expiry` = '".(time()+86400)."', `value` = '".tep_db_input(json_encode($quotes))."'");
+		xtc_db_query("INSERT INTO tiramizoo_cache SET `expiry` = '".(time()+86400)."', `value` = '".xtc_db_input(json_encode($quotes))."'");
 		$_SESSION["tiramizoo_quotes_cache"] = xtc_db_insert_id();
 		
 		global $xtPrice;
@@ -314,7 +314,7 @@ class tiramizoo {
 	function remove() {
 
 		xtc_db_query("delete from " . TABLE_CONFIGURATION . " where configuration_key in ('" . implode("', '", $this->keys()) . "')");
-		tep_db_query("DROP TABLE IF EXISTS `tiramizoo_cache`");
+		xtc_db_query("DROP TABLE IF EXISTS `tiramizoo_cache`");
 
 	}
 
