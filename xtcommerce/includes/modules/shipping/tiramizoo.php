@@ -191,7 +191,7 @@ class tiramizoo {
 		
 		$result = xtc_db_query("SELECT `value` FROM tiramizoo_cache WHERE `id` = '".$_SESSION["tiramizoo_quotes_cache"]."'");
 		
-		if (xtc_db_num_rows() <> 1) { return false; }
+		if (xtc_db_num_rows($result) <> 1) { return false; }
 		
 		$quotes = xtc_db_fetch_array($result);
 		
