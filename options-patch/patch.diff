@@ -1,111 +1,140 @@
-diff -upr a/admin/includes/classes/categories.php b/admin/includes/classes/categories.php
---- a/admin/includes/classes/categories.php	2012-05-23 11:39:11.000000000 +0200
-+++ b/admin/includes/classes/categories.php	2012-05-23 11:36:28.000000000 +0200
+From 08d55e2baa8753f315c034dfd28d12d8c00977a3 Mon Sep 17 00:00:00 2001
+From: Sebastian Vollnhals <sebastian@vollnhals.info>
+Date: Tue, 29 May 2012 19:48:32 +0200
+Subject: [PATCH] options patch applied
+
+---
+ admin/includes/classes/categories.php    |    6 +++++-
+ admin/includes/classes/shopping_cart.php |    6 +++++-
+ admin/includes/modules/new_product.php   |   16 ++++++++++++++++
+ includes/classes/order.php               |    4 ++++
+ includes/classes/shopping_cart.php       |    4 ++--
+ lang/english/admin/categories.php        |   11 +++++++++++
+ lang/german/admin/categories.php         |   12 ++++++++++++
+ 7 files changed, 55 insertions(+), 4 deletions(-)
+
+diff --git a/admin/includes/classes/categories.php b/admin/includes/classes/categories.php
+index 21c9940..83c5060 100644
+--- a/admin/includes/classes/categories.php
++++ b/admin/includes/classes/categories.php
 @@ -499,7 +499,7 @@ class categories {
  			}
  		}
  		//
 -		$sql_data_array = array ('products_quantity' => xtc_db_prepare_input($products_data['products_quantity']), 'products_model' => xtc_db_prepare_input($products_data['products_model']), 'products_ean' => xtc_db_prepare_input($products_data['products_ean']), 'products_price' => xtc_db_prepare_input($products_data['products_price']), 'products_sort' => xtc_db_prepare_input($products_data['products_sort']), 'products_shippingtime' => xtc_db_prepare_input($products_data['shipping_status']), 'products_discount_allowed' => xtc_db_prepare_input($products_data['products_discount_allowed']), 'products_date_available' => $products_date_available, 'products_weight' => xtc_db_prepare_input($products_data['products_weight']), 'products_status' => $products_status, 'products_startpage' => xtc_db_prepare_input($products_data['products_startpage']), 'products_startpage_sort' => xtc_db_prepare_input($products_data['products_startpage_sort']), 'products_tax_class_id' => xtc_db_prepare_input($products_data['products_tax_class_id']), 'product_template' => xtc_db_prepare_input($products_data['info_template']), 'options_template' => xtc_db_prepare_input($products_data['options_template']), 'manufacturers_id' => xtc_db_prepare_input($products_data['manufacturers_id']), 'products_fsk18' => xtc_db_prepare_input($products_data['fsk18']), 'products_vpe_value' => xtc_db_prepare_input($products_data['products_vpe_value']), 'products_vpe_status' => xtc_db_prepare_input($products_data['products_vpe_status']), 'products_vpe' => xtc_db_prepare_input($products_data['products_vpe']));
-+     $sql_data_array = array ('products_quantity' => xtc_db_prepare_input($products_data['products_quantity']), 'products_model' => xtc_db_prepare_input($products_data['products_model']), 'products_ean' => xtc_db_prepare_input($products_data['products_ean']), 'products_price' => xtc_db_prepare_input($products_data['products_price']), 'products_sort' => xtc_db_prepare_input($products_data['products_sort']), 'products_shippingtime' => xtc_db_prepare_input($products_data['shipping_status']), 'products_discount_allowed' => xtc_db_prepare_input($products_data['products_discount_allowed']), 'products_date_available' => $products_date_available, 'products_weight' => xtc_db_prepare_input($products_data['products_weight']), 'products_width' => xtc_db_prepare_input($products_data['products_width']), 'products_length' => xtc_db_prepare_input($products_data['products_length']), 'products_height' => xtc_db_prepare_input($products_data['products_height']), 'products_status' => $products_status, 'products_startpage' => xtc_db_prepare_input($products_data['products_startpage']), 'products_startpage_sort' => xtc_db_prepare_input($products_data['products_startpage_sort']), 'products_tax_class_id' => xtc_db_prepare_input($products_data['products_tax_class_id']), 'product_template' => xtc_db_prepare_input($products_data['info_template']), 'options_template' => xtc_db_prepare_input($products_data['options_template']), 'manufacturers_id' => xtc_db_prepare_input($products_data['manufacturers_id']), 'products_fsk18' => xtc_db_prepare_input($products_data['fsk18']), 'products_vpe_value' => xtc_db_prepare_input($products_data['products_vpe_value']), 'products_vpe_status' => xtc_db_prepare_input($products_data['products_vpe_status']), 'products_vpe' => xtc_db_prepare_input($products_data['products_vpe']));
++		$sql_data_array = array ('products_quantity' => xtc_db_prepare_input($products_data['products_quantity']), 'products_model' => xtc_db_prepare_input($products_data['products_model']), 'products_ean' => xtc_db_prepare_input($products_data['products_ean']), 'products_price' => xtc_db_prepare_input($products_data['products_price']), 'products_sort' => xtc_db_prepare_input($products_data['products_sort']), 'products_shippingtime' => xtc_db_prepare_input($products_data['shipping_status']), 'products_discount_allowed' => xtc_db_prepare_input($products_data['products_discount_allowed']), 'products_date_available' => $products_date_available, 'products_weight' => xtc_db_prepare_input($products_data['products_weight']), 'products_width' => xtc_db_prepare_input($products_data['products_width']), 'products_length' => xtc_db_prepare_input($products_data['products_length']), 'products_height' => xtc_db_prepare_input($products_data['products_height']), 'products_instant' => xtc_db_prepare_input($products_data['products_instant']), 'products_status' => $products_status, 'products_startpage' => xtc_db_prepare_input($products_data['products_startpage']), 'products_startpage_sort' => xtc_db_prepare_input($products_data['products_startpage_sort']), 'products_tax_class_id' => xtc_db_prepare_input($products_data['products_tax_class_id']), 'product_template' => xtc_db_prepare_input($products_data['info_template']), 'options_template' => xtc_db_prepare_input($products_data['options_template']), 'manufacturers_id' => xtc_db_prepare_input($products_data['manufacturers_id']), 'products_fsk18' => xtc_db_prepare_input($products_data['fsk18']), 'products_vpe_value' => xtc_db_prepare_input($products_data['products_vpe_value']), 'products_vpe_status' => xtc_db_prepare_input($products_data['products_vpe_status']), 'products_vpe' => xtc_db_prepare_input($products_data['products_vpe']));
  		$sql_data_array = array_merge($sql_data_array, $permission_array);
  		//get the next ai-value from table products if no products_id is set
  		if (!$products_id || $products_id == '') {
-@@ -750,6 +750,9 @@ class categories {
+@@ -750,6 +750,10 @@ class categories {
  						'products_date_added'=>'now()',
  						'products_date_available'=>$product['products_date_available'],
  						'products_weight'=>$product['products_weight'],
-+                  'products_width'=>$product['products_width'],
-+                  'products_length'=>$product['products_length'],
-+                  'products_height'=>$product['products_height'],
++						'products_width'=>$product['products_width'],
++						'products_length'=>$product['products_length'],
++						'products_height'=>$product['products_height'],
++						'products_instant'=>$product['products_instant'],
  						'products_status'=>$products_status,
  						'products_tax_class_id'=>$product['products_tax_class_id'],
  						'manufacturers_id'=>$product['manufacturers_id'],
-diff -upr a/admin/includes/classes/shopping_cart.php b/admin/includes/classes/shopping_cart.php
---- a/admin/includes/classes/shopping_cart.php	2012-05-23 11:49:14.000000000 +0200
-+++ b/admin/includes/classes/shopping_cart.php	2012-05-23 11:59:15.000000000 +0200
-@@ -251,7 +251,7 @@ defined( '_VALID_XTC' ) or die( 'Direct 
+diff --git a/admin/includes/classes/shopping_cart.php b/admin/includes/classes/shopping_cart.php
+index b837a91..e7a5f19 100644
+--- a/admin/includes/classes/shopping_cart.php
++++ b/admin/includes/classes/shopping_cart.php
+@@ -251,7 +251,7 @@ defined( '_VALID_XTC' ) or die( 'Direct Access to this location is not allowed.'
        $products_array = array();
        reset($this->contents);
        while (list($products_id, ) = each($this->contents)) {
 -        $products_query = xtc_db_query("select p.products_id, pd.products_name, p.products_model, p.products_price, p.products_weight, p.products_tax_class_id from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd where p.products_id='" . xtc_get_prid($products_id) . "' and pd.products_id = p.products_id and pd.language_id = '" . $_SESSION['languages_id'] . "'");
-+        $products_query = xtc_db_query("select p.products_id, pd.products_name, p.products_model, p.products_price, p.products_weight, p.products_width, p.products_height, p.products_length, p.products_tax_class_id from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd where p.products_id='" . xtc_get_prid($products_id) . "' and pd.products_id = p.products_id and pd.language_id = '" . $_SESSION['languages_id'] . "'");
++        $products_query = xtc_db_query("select p.products_id, pd.products_name, p.products_model, p.products_price, p.products_weight, p.products_width, p.products_height, p.products_length, p.products_instant, p.products_tax_class_id from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd where p.products_id='" . xtc_get_prid($products_id) . "' and pd.products_id = p.products_id and pd.language_id = '" . $_SESSION['languages_id'] . "'");
          if ($products = xtc_db_fetch_array($products_query)) {
            $prid = $products['products_id'];
            $products_price = $products['products_price'];
-@@ -268,6 +268,9 @@ defined( '_VALID_XTC' ) or die( 'Direct 
+@@ -268,6 +268,10 @@ defined( '_VALID_XTC' ) or die( 'Direct Access to this location is not allowed.'
                                      'price' => $products_price,
                                      'quantity' => $this->contents[$products_id]['qty'],
                                      'weight' => $products['products_weight'],
 +                                    'width' => $products['products_width'],
 +                                    'height' => $products['products_height'],
 +                                    'length' => $products['products_length'],
++                                    'instant' => $products['products_instant'],
                                      'final_price' => ($products_price + $this->attributes_price($products_id)),
                                      'tax_class_id' => $products['products_tax_class_id'],
                                      'attributes' => $this->contents[$products_id]['attributes']);
-diff -upr a/admin/includes/modules/new_product.php b/admin/includes/modules/new_product.php
---- a/admin/includes/modules/new_product.php	2012-05-23 11:44:29.000000000 +0200
-+++ b/admin/includes/modules/new_product.php	2012-05-23 11:35:19.000000000 +0200
-@@ -142,6 +142,18 @@ if ($pInfo->products_startpage == '1') {
+diff --git a/admin/includes/modules/new_product.php b/admin/includes/modules/new_product.php
+index 7227f39..1d355f0 100644
+--- a/admin/includes/modules/new_product.php
++++ b/admin/includes/modules/new_product.php
+@@ -142,6 +142,22 @@ if ($pInfo->products_startpage == '1') { $startpage_checked = true; } else { $st
          <td><span class="main"><?php echo TEXT_PRODUCTS_WEIGHT; ?><?php echo xtc_draw_input_field('products_weight', $pInfo->products_weight,'size=4'); ?><?php echo TEXT_PRODUCTS_WEIGHT_INFO; ?></span></td>
        </tr>
        <tr>
-+         <td><span class="main"></span></td>
-+         <td><span class="main"><?php echo TEXT_PRODUCTS_WIDTH; ?><?php echo xtc_draw_input_field('products_width', $pInfo->products_width,'size=4'); ?><?php echo TEXT_PRODUCTS_WIDTH_INFO; ?></span></td>
-+       </tr>
-+       <tr>
-+         <td><span class="main"></span></td>
-+         <td><span class="main"><?php echo TEXT_PRODUCTS_LENGTH; ?><?php echo xtc_draw_input_field('products_length', $pInfo->products_length,'size=4'); ?><?php echo TEXT_PRODUCTS_LENGTH_INFO; ?></span></td>
-+       </tr>
-+       <tr>
-+         <td><span class="main"></span></td>
-+         <td><span class="main"><?php echo TEXT_PRODUCTS_HEIGHT; ?><?php echo xtc_draw_input_field('products_height', $pInfo->products_height,'size=4'); ?><?php echo TEXT_PRODUCTS_HEIGHT_INFO; ?></span></td>
-+       </tr>
-+       <tr>
++        <td><span class="main"></span></td>
++        <td><span class="main"><?php echo TEXT_PRODUCTS_WIDTH; ?><?php echo xtc_draw_input_field('products_width', $pInfo->products_width,'size=4'); ?><?php echo TEXT_PRODUCTS_WIDTH_INFO; ?></span></td>
++      </tr>
++      <tr>
++        <td><span class="main"></span></td>
++        <td><span class="main"><?php echo TEXT_PRODUCTS_LENGTH; ?><?php echo xtc_draw_input_field('products_length', $pInfo->products_length,'size=4'); ?><?php echo TEXT_PRODUCTS_LENGTH_INFO; ?></span></td>
++      </tr>
++      <tr>
++        <td><span class="main"></span></td>
++        <td><span class="main"><?php echo TEXT_PRODUCTS_HEIGHT; ?><?php echo xtc_draw_input_field('products_height', $pInfo->products_height,'size=4'); ?><?php echo TEXT_PRODUCTS_HEIGHT_INFO; ?></span></td>
++      </tr>
++      <tr>
++        <td><span class="main"></span></td>
++        <td><span class="main"><?php echo tep_draw_checkbox_field('products_instant', $pInfo->products_instant, false, 'y'); ?> <?php echo TEXT_PRODUCTS_INSTANT; ?></span></td>
++      </tr>
++      <tr>
  <?php if (ACTIVATE_SHIPPING_STATUS=='true') { ?>
          <td><span class="main"><?php echo BOX_SHIPPING_STATUS.':'; ?></span></td>
          <td><span class="main"><?php echo xtc_draw_pull_down_menu('shipping_status', $shipping_statuses, $pInfo->products_shippingtime); ?></span></td>
-diff -upr a/includes/classes/order.php b/includes/classes/order.php
---- a/includes/classes/order.php	2012-05-23 11:48:58.000000000 +0200
-+++ b/includes/classes/order.php	2012-05-23 11:34:52.000000000 +0200
-@@ -356,6 +356,9 @@
+diff --git a/includes/classes/order.php b/includes/classes/order.php
+index e36673c..1f1e63f 100644
+--- a/includes/classes/order.php
++++ b/includes/classes/order.php
+@@ -356,6 +356,10 @@
                              		    'final_price' => $products_price*$products[$i]['quantity'],
                              		    'shipping_time'=>$products[$i]['shipping_time'],
  					                    'weight' => $products[$i]['weight'],
 +                                        'width' => $products[$i]['width'],
 +                                        'height' => $products[$i]['height'],
 +                                        'length' => $products[$i]['length'],
++                                        'instant' => $products[$i]['instant'],
                                          'id' => $products[$i]['id']);
  
          if ($products[$i]['attributes']) {
-diff -upr a/includes/classes/shopping_cart.php b/includes/classes/shopping_cart.php
---- a/includes/classes/shopping_cart.php	2012-05-23 11:49:49.000000000 +0200
-+++ b/includes/classes/shopping_cart.php	2012-05-23 11:34:53.000000000 +0200
+diff --git a/includes/classes/shopping_cart.php b/includes/classes/shopping_cart.php
+index 6cef0b7..61d26a8 100644
+--- a/includes/classes/shopping_cart.php
++++ b/includes/classes/shopping_cart.php
 @@ -335,13 +335,13 @@ class shoppingCart {
  		reset($this->contents);
  		while (list ($products_id,) = each($this->contents)) {
  			if($this->contents[$products_id]['qty'] != 0 || $this->contents[$products_id]['qty'] !=''){			
 -			$products_query = xtc_db_query("select p.products_id, pd.products_name,p.products_shippingtime, p.products_image, p.products_model, p.products_price, p.products_discount_allowed, p.products_weight, p.products_tax_class_id from ".TABLE_PRODUCTS." p, ".TABLE_PRODUCTS_DESCRIPTION." pd where p.products_id='".xtc_get_prid($products_id)."' and pd.products_id = p.products_id and pd.language_id = '".$_SESSION['languages_id']."'");
-+			$products_query = xtc_db_query("select p.products_id, pd.products_name,p.products_shippingtime, p.products_image, p.products_model, p.products_price, p.products_discount_allowed, p.products_weight, p.products_width, p.products_length, p.products_height, p.products_tax_class_id from ".TABLE_PRODUCTS." p, ".TABLE_PRODUCTS_DESCRIPTION." pd where p.products_id='".xtc_get_prid($products_id)."' and pd.products_id = p.products_id and pd.language_id = '".$_SESSION['languages_id']."'");
++			$products_query = xtc_db_query("select p.products_id, pd.products_name,p.products_shippingtime, p.products_image, p.products_model, p.products_price, p.products_discount_allowed, p.products_weight, p.products_width, p.products_length, p.products_height, p.products_instant, p.products_tax_class_id from ".TABLE_PRODUCTS." p, ".TABLE_PRODUCTS_DESCRIPTION." pd where p.products_id='".xtc_get_prid($products_id)."' and pd.products_id = p.products_id and pd.language_id = '".$_SESSION['languages_id']."'");
  			if ($products = xtc_db_fetch_array($products_query)) {
  				$prid = $products['products_id'];
  
  				$products_price = $xtPrice->xtcGetPrice($products['products_id'], $format = false, $this->contents[$products_id]['qty'], $products['products_tax_class_id'], $products['products_price']);
  
 -				$products_array[] = array ('id' => $products_id, 'name' => $products['products_name'], 'model' => $products['products_model'], 'image' => $products['products_image'], 'price' => $products_price + $this->attributes_price($products_id), 'quantity' => $this->contents[$products_id]['qty'], 'weight' => $products['products_weight'],'shipping_time' => $main->getShippingStatusName($products['products_shippingtime']), 'final_price' => ($products_price + $this->attributes_price($products_id)), 'tax_class_id' => $products['products_tax_class_id'], 'attributes' => $this->contents[$products_id]['attributes']);
-+				$products_array[] = array ('id' => $products_id, 'name' => $products['products_name'], 'model' => $products['products_model'], 'image' => $products['products_image'], 'price' => $products_price + $this->attributes_price($products_id), 'quantity' => $this->contents[$products_id]['qty'], 'weight' => $products['products_weight'], 'width' => $products['products_width'], 'length' => $products['products_length'], 'height' => $products['products_height'], 'shipping_time' => $main->getShippingStatusName($products['products_shippingtime']), 'final_price' => ($products_price + $this->attributes_price($products_id)), 'tax_class_id' => $products['products_tax_class_id'], 'attributes' => $this->contents[$products_id]['attributes']);
++				$products_array[] = array ('id' => $products_id, 'name' => $products['products_name'], 'model' => $products['products_model'], 'image' => $products['products_image'], 'price' => $products_price + $this->attributes_price($products_id), 'quantity' => $this->contents[$products_id]['qty'], 'weight' => $products['products_weight'], 'width' => $products['products_width'], 'length' => $products['products_length'], 'height' => $products['products_height'], 'instant' => $products['products_instant'], 'shipping_time' => $main->getShippingStatusName($products['products_shippingtime']), 'final_price' => ($products_price + $this->attributes_price($products_id)), 'tax_class_id' => $products['products_tax_class_id'], 'attributes' => $this->contents[$products_id]['attributes']);
  			}
  			}
  		}
-diff -upr a/lang/english/admin/categories.php b/lang/english/admin/categories.php
---- a/lang/english/admin/categories.php	2012-05-23 11:50:26.000000000 +0200
-+++ b/lang/english/admin/categories.php	2012-05-23 11:34:16.000000000 +0200
-@@ -187,4 +187,14 @@ define('HEADING_CATEGORY','category');
+diff --git a/lang/english/admin/categories.php b/lang/english/admin/categories.php
+index 29d0d97..8ed19e1 100644
+--- a/lang/english/admin/categories.php
++++ b/lang/english/admin/categories.php
+@@ -187,4 +187,15 @@ define('HEADING_CATEGORY','category');
  define('HEADING_ADD','Add?');
  define('HEADING_GROUP','Group');
  
 +define('TEXT_PRODUCTS_LENGTH', 'Products Length:');
 +define('TEXT_PRODUCTS_WIDTH', 'Products Width:');
 +define('TEXT_PRODUCTS_HEIGHT', 'Products Height:');
++define('TEXT_PRODUCTS_INSTANT', 'Enable delivery with tiramizoo for this product');
 +define('TEXT_PRODUCTS_WIDTH_INFO','<small>(cm)</small>');
 +define('TEXT_PRODUCTS_LENGTH_INFO','<small>(cm)</small>');
 +define('TEXT_PRODUCTS_HEIGHT_INFO','<small>(cm)</small>');
@@ -115,16 +144,19 @@ diff -upr a/lang/english/admin/categories.php b/lang/english/admin/categories.ph
 +
  ?>
 \ No newline at end of file
-diff -upr a/lang/german/admin/categories.php b/lang/german/admin/categories.php
---- a/lang/german/admin/categories.php	2012-05-23 11:50:38.000000000 +0200
-+++ b/lang/german/admin/categories.php	2012-05-23 11:34:27.000000000 +0200
-@@ -185,4 +185,14 @@ define('HEADING_MODEL','Artikelnummer');
+diff --git a/lang/german/admin/categories.php b/lang/german/admin/categories.php
+index 7ab2600..92729ca 100644
+--- a/lang/german/admin/categories.php
++++ b/lang/german/admin/categories.php
+@@ -184,4 +184,16 @@ define('HEADING_SORTING','Reihung');
+ define('HEADING_MODEL','Artikelnummer');
  define('HEADING_NAME','Artikel');
  define('HEADING_CATEGORY','Kategorie');
- 
++
 +define('TEXT_PRODUCTS_WIDTH', 'Breite:');
 +define('TEXT_PRODUCTS_LENGTH', 'L&auml;nge:');
 +define('TEXT_PRODUCTS_HEIGHT', 'H&ouml;he:');
++define('TEXT_PRODUCTS_INSTANT', 'Lieferung durch tiramizoo für dieses Produkt zulassen');
 +define('TEXT_PRODUCTS_WIDTH_INFO','<small>(cm)</small>');
 +define('TEXT_PRODUCTS_LENGTH_INFO','<small>(cm)</small>');
 +define('TEXT_PRODUCTS_HEIGHT_INFO','<small>(cm)</small>');
@@ -134,3 +166,6 @@ diff -upr a/lang/german/admin/categories.php b/lang/german/admin/categories.php
 +
  ?>
 \ No newline at end of file
+-- 
+1.7.8.3
+
